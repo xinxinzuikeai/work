@@ -1,0 +1,86 @@
+
+{% extends 'stumanage/base.html' %}
+{% block main %}
+    <h2>学生信息</h2>
+    <table class="table table-hover">
+    <tbody>
+        <tr>
+            <th>头像</th>
+            <th>姓名</th>
+            <th>年龄
+                <a href="?order=age&rule=u&sval={{ sval }}"><span class="glyphicon glyphicon-arrow-up"></span></a>
+                <a href="?order=age&rule=d&sval={{ sval }}"><span class="glyphicon glyphicon-arrow-down"></span></a>
+            </th>
+            <th>成绩
+                <a href="?order=score&rule=u&sval={{ sval }}"><span class="glyphicon glyphicon-arrow-up"></span></a>
+                <a href="?order=score&rule=d&sval={{ sval }}"><span class="glyphicon glyphicon-arrow-down"></span></a>
+            </th>
+            <th>邮箱</th>
+            <th>电话</th>
+            <th>入学时间</th>
+            <th>班级
+                <a href="?order=className&rule=u&sval={{ sval }}"><span class="glyphicon glyphicon-arrow-up"></span></a>
+                <a href="?order=className&rule=d&sval={{ sval }}"><span class="glyphicon glyphicon-arrow-down"></span></a>
+            </th>
+            <th>管理</th>
+        </tr>
+        {% for stu in stus %}
+            <tr>
+                <td><img src="{{ stu.avatar.url }}" width="30" height="30" style="border-radius: 15%"></td>
+                <td>{{ stu.name }}</td>
+                <td>{{ stu.age }}</td>
+                <td>
+                    {% if stu.score %}
+                        {{ stu.score }}
+                    {% else %}
+                        没考试
+                    {% endif %}
+                </td>
+                <td>{{ stu.email }}</td>
+                <td>{{ stu.tel }}</td>
+                <td>{{ stu.pub_time }}</td>
+                <td>{{ stu.className }}</td>
+                <td>
+                    <a href="{% url 'stumanage:changeStuOfDB' stu.id %}">修改</a>/
+                    <a href="{% url 'stumanage:deleteStuOfDB' stu.id %}" onclick="return confirm('确认要删除吗?');">删除</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+
+<!-- 分页 -->
+    <nav aria-label="Page navigation" class="text-center">
+      <ul class="pagination">
+
+        <!--上一页按钮-->
+        {% if stus.has_previous %}  <!--判断有没有上一页-->
+        <li>
+          <a href="?pn={{ stus.previous_page_number }}&sval={{ request.GET.sval }}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        {% endif %}
+
+        <!--中间数字-->
+        {% for i in stu_num %}
+            {% if i == stus.number %}  <!--如果循环出来的数字等于当前页就标蓝,class=active-->
+                <!-- 定位到某一页时,某一页的页码不能再被点击,所以加上javascript:return false -->
+                <li class="active"><a href="javascript:return false">{{ i }}</a></li>
+            {% else %}
+                <li><a href="?pn={{ i }}&sval={{ request.GET.sval }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        <!--下一页按钮-->
+        {% if stus.has_next %}  <!--判断有没有下一页-->
+        <li>
+          <a href="?pn={{ stus.next_page_number }}&sval={{ request.GET.sval }}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+
+{% endblock %}

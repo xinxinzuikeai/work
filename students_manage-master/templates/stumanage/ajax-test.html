@@ -1,0 +1,15 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态加载</title>
+</head>
+<body>
+    <h2>通过ajax显示学生数据</h2>
+    <button id="btn">显示学生信息</button>
+    <div id="ajax"></div>
+    <script type="text/javascript" src="{% static 'stumanage/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'stumanage/js/ajax-test.js' %}"></script>
+</body>
+</html>

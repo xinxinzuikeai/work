@@ -1,0 +1,35 @@
+{% extends 'stumanage/base.html' %}
+
+{% block search %}
+{% endblock %}
+
+{% block main %}
+<form class="navbar-form" action="{% url 'stumanage:saveStuToDB' '0' %}" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+  <fieldset>
+    <legend>增加学生信息</legend>
+    <label>姓名:</label>
+    <input type="text" name="name" placeholder="学生信息" class="form-control"><br><br>
+    <label>年龄:</label>
+    <input type="text" name="age" placeholder="学生信息" class="form-control"><br><br>
+    <label>成绩:</label>
+    <input type="text" name="score" placeholder="学生信息" class="form-control"><br><br>
+    <label>电话:</label>
+    <input type="text" name="tel" placeholder="学生信息" class="form-control"><br><br>
+    <label>邮箱:</label>
+    <input type="text" name="email" placeholder="学生信息" class="form-control"><br><br>
+    <label>头像:</label>
+    <input type="file" name="avatar" class="form-control"><br><br>
+    <label>预览:</label>
+    <img src="/upload/avatar/default.jpg" width="100" height="100"><br><br>
+    <label>班级：</label>
+    <select name="className" class="form-control">
+        {% for cls in clss %}
+            <option value="{{ cls.id }}">{{ cls.name }}</option>
+        {% endfor %}
+    </select><br><br>
+    <button type="submit" class="btn btn-primary">添加</button>
+  </fieldset>
+<span style="color: red">{{ avatarError }}</span>
+</form>
+{% endblock %}

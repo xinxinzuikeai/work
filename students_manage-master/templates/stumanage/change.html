@@ -1,0 +1,27 @@
+{% extends 'stumanage/base.html' %}
+
+{% block main %}
+    <h2>修改学生信息</h2>
+    <form action="{% url 'stumanage:saveStuToDB' stu.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <ul>
+            <li>姓名：<input type="text" name="name" value="{{ stu.name }}"></li><br>
+            <li>年龄：<input type="text" name="age" value="{{ stu.age }}"></li><br>
+            <li>成绩：<input type="text" name="score" value="{{ stu.score }}"></li><br>
+            <li>邮箱：<input type="text" name="email" value="{{ stu.email }}"></li><br>
+            <li>电话：<input type="text" name="tel" value="{{ stu.tel }}"></li><br>
+            <li>头像: <input type="file" name="avatar" value="{{ stu.avatar }}"></li><br>
+            <li>预览: <img src="{{ stu.avatar.url }}" width="100" height="100"><br>
+            {{ stu.avatar.url }}
+            <li>
+                班级：
+                <select name="className">
+                    {% for cls in clss %}
+                        <option value="{{ cls.id }}">{{ cls.name }}</option>
+                    {% endfor %}
+                </select>
+            </li><br>
+            <li><input type="submit"></li><br>
+        </ul>
+    </form>
+{% endblock %}

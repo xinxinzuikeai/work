@@ -1,0 +1,42 @@
+{% extends 'stumanage/base.html' %}
+
+{% block search %}
+{% endblock %}
+
+{% block leftMenu %}
+{% endblock %}
+
+{% block main %}
+<fieldset>
+    <legend>项目简介</legend>
+        <h3><p>一.项目功能</p></h3>
+        <p>1.登陆.退出.注册</p>
+        <p>2.用户可页面操作数据库的增删改查</p>
+        <p>3.登陆状态功能</p>
+            <p style="text-indent: 2em">1).查看学生信息</p>
+                <p style="text-indent: 4em">~列表显示,每行一个人的信息</p>
+                <p style="text-indent: 4em">~对某些字段增加排序功能,且检索后依然可实现排序 </p>
+                <p style="text-indent: 4em">~分页显示,可设置每页显示的 数据条数</p>
+                <p style="text-indent: 4em">~信息检索支持全字段模糊匹配</p>
+            <p style="text-indent: 2em">2).添加.修改及删除学生信息</p>
+                <p style="text-indent: 4em">~添加学生基本信息</p>
+                <p style="text-indent: 4em">~添加头像,不上传会有默认头像</p>
+                <p style="text-indent: 4em">~添加下拉框,选择班级</p>
+                <p style="text-indent: 4em">~删除弹出警告提示</p>
+        <p>4.未登陆状态功能</p>
+            <p style="text-indent: 2em">1).无权限访问'127.0.0.1:8000/stumanage/main'</p>
+                <p style="text-indent: 4em">~可以查询学生信息,权限为只读</p>
+                <p style="text-indent: 4em">~可以查看帮助,也就是此文档</p>
+                <p style="text-indent: 4em">~可以调到登陆界面,选择登陆或注册</p>
+
+        <h3><p>二.操作说明</p></h3>
+        <p>1.使用系统先注册---交钱!!</p>
+        <p>2.Djando后台</p>
+            <p style="text-indent: 2em">1).用户名:yushanyong</p>
+            <p style="text-indent: 2em">2).密码:111111</p>
+        <p>3.相关链接</p>
+            <p style="text-indent: 2em">1).主页:127.0.0.1:8000/stumanage/main</p>
+
+</fieldset>
+{% endblock %}
+

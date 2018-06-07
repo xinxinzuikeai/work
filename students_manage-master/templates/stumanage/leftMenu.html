@@ -1,0 +1,9 @@
+<div class="col-sm-3 col-md-2 sidebar">
+  <ul class="nav nav-sidebar">
+    <li class="{{ index }}"><a href="{% url 'stumanage:index' %}">高级检索<span class="sr-only">(current)</span></a></li>
+    <li class="{{ manage }}"><a href="{% url 'stumanage:manage' %}">学生管理</a></li>
+    <li class="{{ append }}"><a href="{% url 'stumanage:append' %}">添加信息</a></li>
+    <li><a href="{% url 'stumanage:tinymce' %}">站内博客</a></li>
+    <li><a href="{% url 'stumanage:ajaxpage' %}">ajax测试</a></li>
+  </ul>
+</div>

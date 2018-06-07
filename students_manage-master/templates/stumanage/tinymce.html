@@ -1,0 +1,23 @@
+{% extends 'stumanage/base.html' %}
+{% load static %}
+
+{% block addhead %}
+    <script type="text/javascript" src="{% static 'tiny_mce/tiny_mce.js' %}"></script>
+    <script type="text/javascript">
+        tinyMCE.init({
+            'mode': 'textareas',
+            'theme': 'advanced',
+            'width': 1150,
+            'height': 500
+        })
+    </script>
+{% endblock %}
+
+{% block main %}
+    <h2><strong>富文本编辑器</strong></h2>
+    <form action="{% url 'stumanage:saveTinyMCE' %}" method="post">
+    {% csrf_token %}
+        <textarea name="text" id="tinymce_text">你想写点啥</textarea><br>
+        <button type="submit" class="btn btn-primary">提交</button>
+    </form>
+{% endblock %}

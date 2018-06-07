@@ -1,0 +1,55 @@
+{% extends 'stumanage/base.html' %}
+
+{% block search %}
+{% endblock %}
+
+{% block leftMenu %}
+{% endblock %}
+
+{% block main %}
+<form class="navbar-form" action="{% url 'stumanage:main' %}">  <!-- 这里只涉及到查询,用GET就可以 -->
+{% csrf_token %}
+  <fieldset>
+    <legend>中国第一搜索引擎</legend>
+    <input type="text" name="name" placeholder="请输入学员信息" class="form-control input-lg">
+    <button type="submit" class="btn btn-primary input-lg">检索</button>
+  </fieldset>
+</form>
+
+{% if stus %}
+<table class="table table-hover">
+    <tbody>
+        <tr>
+            <th>头像</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>成绩</th>
+            <th>邮箱</th>
+            <th>电话</th>
+            <th>入学时间</th>
+            <th>班级</th>
+        </tr>
+        {% for stu in stus %}
+            <tr>
+                <td><img src="{{ stu.avatar.url }}" width="30" height="30" style="border-radius: 15%"></td>
+                <td>{{ stu.name }}</td>
+                <td>{{ stu.age }}</td>
+                <td>
+                    {% if stu.score %}
+                        {{ stu.score }}
+                    {% else %}
+                        没考试
+                    {% endif %}
+                </td>
+                <td>{{ stu.email }}</td>
+                <td>{{ stu.tel }}</td>
+                <td>{{ stu.pub_time }}</td>
+                <td>{{ stu.className }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% endblock %}
+
